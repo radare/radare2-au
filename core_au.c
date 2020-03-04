@@ -1068,7 +1068,7 @@ static void phone_key(RCore *core, const char *ch) {
 
 static void au_setamplitudes(RCore *core, const char *input) {
 	char *dinput = strdup (input);
-	RList *args = r_str_split_list (dinput, " ");
+	RList *args = r_str_split_list (dinput, " ", -1);
 	RListIter *iter;
 	char *arg;
 	namplitudes = r_list_length (args);
@@ -1084,7 +1084,7 @@ static void au_setamplitudes(RCore *core, const char *input) {
 
 static void au_setchords(RCore *core, const char *input) {
 	char *dinput = strdup (input);
-	RList *args = r_str_split_list (dinput, " ");
+	RList *args = r_str_split_list (dinput, " ", -1);
 	RListIter *iter;
 	char *arg;
 	nchords = r_list_length (args);
@@ -1616,10 +1616,10 @@ static int _cmd_au (RCore *core, const char *args) {
 		}
 		break;
 	case 'E': // "auE"
-		au_setchords (core, r_str_trim_ro (args + 1));
+		au_setchords (core, r_str_trim_head_ro (args + 1));
 		break;
 	case 'N': // "auN"
-		au_setamplitudes (core, r_str_trim_ro (args + 1));
+		au_setamplitudes (core, r_str_trim_head_ro (args + 1));
 		break;
 	case 'e': // "aue"
 		switch (args[1]) {

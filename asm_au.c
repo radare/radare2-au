@@ -7,7 +7,7 @@
 static int assemble(RAsm *a, RAsmOp *op, const char *str) {
 	char *arg = strdup (str);
 	r_str_replace_char (arg, ',', ' ');
-	RList *args = r_str_split_list (arg, " ");
+	RList *args = r_str_split_list (arg, " ", -1);
 	const char *mnemonic = r_list_get_n (args, 0);
 	ut8 *buf = r_asm_op_get_buf (op);
 	op->size = -1;
